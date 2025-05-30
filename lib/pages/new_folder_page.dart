@@ -8,16 +8,28 @@ class NewFolderPage extends StatefulWidget {
 }
 
 class _NewFolderPageState extends State<NewFolderPage> {
+  final nameController = TextEditingController();
+  final nameFocus = FocusNode();
+  final key = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text("Folder Details"),
+      ),
       body: SafeArea(
         child: Padding(
           padding: EdgeInsets.all(20),
           child: Center(
-            child: Column(
-              children: [],
+            child: Form(
+              key: key,
+              child: Column(
+                children: [
+
+                ],
+              ),
             ),
           ),
         ),

@@ -1,3 +1,4 @@
+import 'package:budget_tracker_app_d4/models/folder_model.dart';
 import 'package:budget_tracker_app_d4/pages/new_folder_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  List<FolderModel> folders = [];
+
+  @override
+  void initState() {
+    load();
+    super.initState();
+  }
+
+  void load() async {
+    folders = await getAllFolders();
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +37,7 @@ class _HomePageState extends State<HomePage> {
               await Get.to(NewFolderPage());
               load();
             },
-            child: Icon(Icons.add),
+            child: Icon(Icons.add, size: 30),
           ),
         ],
       ),
