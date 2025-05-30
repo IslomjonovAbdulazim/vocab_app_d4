@@ -1,4 +1,7 @@
+import 'package:budget_tracker_app_d4/models/folder_model.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class NewFolderPage extends StatefulWidget {
   const NewFolderPage({super.key});
@@ -42,6 +45,22 @@ class _NewFolderPageState extends State<NewFolderPage> {
                         return "Enter Folder Name";
                       }
                     },
+                  ),
+                  SizedBox(height: 10),
+                  CupertinoButton(
+                    color: Colors.yellow,
+                    onPressed: () async {
+                      if (key.currentState!.validate()) {
+                        final model = FolderModel(
+                          title: nameController.text.trim(),
+                          createdAt: DateTime.now(),
+                          totalWords: 0,
+                        );
+                        await createFolder(model);
+                        Get.back();
+                      }
+                    },
+                    child: Center(child: Text("Save")),
                   ),
                 ],
               ),
