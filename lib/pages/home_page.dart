@@ -21,6 +21,7 @@ class _HomePageState extends State<HomePage> {
           CupertinoButton(
             onPressed: () async {
               await Get.to(NewFolderPage());
+              load();
             },
             child: Icon(Icons.add),
           ),
