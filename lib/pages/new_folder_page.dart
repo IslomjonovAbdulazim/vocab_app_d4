@@ -27,7 +27,22 @@ class _NewFolderPageState extends State<NewFolderPage> {
               key: key,
               child: Column(
                 children: [
-
+                  TextFormField(
+                    controller: nameController,
+                    focusNode: nameFocus,
+                    maxLength: 40,
+                    onTapOutside: (value) => nameFocus.unfocus(),
+                    autofocus: true,
+                    decoration: InputDecoration(
+                      labelText: "Folder Name...",
+                    ),
+                    validator: (value) {
+                      final txt = value?.trim() ?? "";
+                      if (txt.length < 3) {
+                        return "Enter Folder Name";
+                      }
+                    },
+                  ),
                 ],
               ),
             ),
