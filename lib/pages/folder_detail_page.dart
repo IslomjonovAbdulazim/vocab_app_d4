@@ -1,4 +1,6 @@
 import 'package:budget_tracker_app_d4/models/folder_model.dart';
+import 'package:budget_tracker_app_d4/models/vocab_model.dart';
+import 'package:budget_tracker_app_d4/pages/new_vocab_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,6 +16,20 @@ class FolderDetailPage extends StatefulWidget {
 }
 
 class _FolderDetailPageState extends State<FolderDetailPage> {
+  List<VocabModel> vocabs = [];
+
+  @override
+  void initState() {
+    load();
+    super.initState();
+  }
+
+  void load() async {
+    vocabs = await getAllVocabs();
+    vocabs.removeWhere((model) => model.folderId != widget.folder.createdAt);
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +70,37 @@ class _FolderDetailPageState extends State<FolderDetailPage> {
                     Text(" at "),
                     Text(DateFormat.Hm().format(widget.folder.createdAt)),
                   ],
+                ),
+                SizedBox(height: 8),
+                CupertinoButton(
+                  color: Colors.yellow,
+                  onPressed: () async {
+                    await Get.to(NewVocabPage());
+                    load();
+                  },
+                  child: Center(child: Text("New Vocab")),
+                ),
+                Divider(),
+                SizedBox(height: 8),
+                Expanded(
+                  child: ListView.builder(
+                    itemCount: vocabs.length,
+                    itemBuilder: (context, index) {
+                      final model = vocabs[index];
+                      return Padding(
+                        padding: EdgeInsets.symmetric(vertical: 8),
+                        child: CupertinoButton(
+                          color: Colors.yellow,
+                          onPressed: () {},
+                          child: ListTile(
+                            title: Text(model.title),
+                            subtitle: Text(model.description),
+                            // todo continue
+                          ),
+                        ),
+                      );
+                    },
+                  ),
                 ),
               ],
             ),
