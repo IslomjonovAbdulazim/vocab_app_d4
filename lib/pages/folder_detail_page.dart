@@ -1,7 +1,9 @@
+import 'package:budget_tracker_app_d4/models/folder_model.dart';
 import 'package:flutter/material.dart';
 
 class FolderDetailPage extends StatefulWidget {
-  const FolderDetailPage({super.key});
+  final FolderModel folder;
+  const FolderDetailPage({super.key, required this.folder});
 
   @override
   State<FolderDetailPage> createState() => _FolderDetailPageState();
