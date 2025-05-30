@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class NewFolderPage extends StatefulWidget {
-  const NewFolderPage({super.key});
+class FolderDetailPage extends StatefulWidget {
+  const FolderDetailPage({super.key});
 
   @override
-  State<NewFolderPage> createState() => _NewFolderPageState();
+  State<FolderDetailPage> createState() => _FolderDetailPageState();
 }
 
-class _NewFolderPageState extends State<NewFolderPage> {
+class _FolderDetailPageState extends State<FolderDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
